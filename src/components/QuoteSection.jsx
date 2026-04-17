@@ -91,7 +91,7 @@ are crucial because quantitative data can be misleading and fail to capture the 
             letterSpacing: '0.12em',
             color: 'var(--c-teal)',
             textTransform: 'uppercase',
-          }}>Psychology, Sociology, and Economics,</span>
+          }}>Psychology | Sociology | Economics</span>
           <div style={{ width: 32, height: 1, background: 'var(--c-teal)' }} />
         </motion.div>
       </div>
