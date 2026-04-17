@@ -207,7 +207,7 @@ export const VALIDATION_NODES = [
     id: 'risk',
     label: 'Risk',
     icon: 'warning_amber',
-    color: '#438F9C',
+    color: '#A56935',
     headline: 'The Generative Risk',
     summary: 'AI outputs can appear correct while containing subtle inaccuracies.',
     detail: 'Generative systems introduce a critical failure mode: outputs that look authoritative but are subtly wrong. Without validation, this erodes trust, leads to poor decisions, and blocks adoption at the leadership level. The executive agreement: 90–95% accuracy or the initiative stops.',
