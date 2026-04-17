@@ -146,23 +146,17 @@ export default function ProblemSection() {
 
         {/* Image placeholder */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={visible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          style={{
-            width: '100%', height: 280,
-            background: 'rgba(255,255,255,0.03)',
-            border: '2px dashed rgba(120,172,175,0.2)',
-            borderRadius: 20,
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            gap: 12, marginBottom: 40,
-            color: 'var(--c-text-muted)',
-          }}
-        >
-          <span className="material-icons-round" style={{ fontSize: 40, color: 'rgba(120,172,175,0.3)' }}>image</span>
-          <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>https://learn.microsoft.com/en-us/power-bi/create-reports/media/service-dashboards/power-bi-dashboard2.png</span>
-        </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  animate={visible ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.6, delay: 0.15 }}
+  style={{ marginBottom: 40 }}
+>
+  <img
+    src="https://learn.microsoft.com/en-us/power-bi/create-reports/media/service-dashboards/power-bi-dashboard2.png"
+    alt="Problem overview"
+    style={{ width: '100%', borderRadius: 20, objectFit: 'cover', display: 'block' }}
+  />
+</motion.div>
 
         {/* Problem cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))', gap: 16 }}>
