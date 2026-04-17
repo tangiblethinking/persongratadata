@@ -161,7 +161,7 @@ export default function ProblemSection() {
           }}
         >
           <span className="material-icons-round" style={{ fontSize: 40, color: 'rgba(120,172,175,0.3)' }}>image</span>
-          <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>IMAGE PLACEHOLDER — ADD URL</span>
+          <span style={{ fontSize: '0.8rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>https://learn.microsoft.com/en-us/power-bi/create-reports/media/service-dashboards/power-bi-dashboard2.png</span>
         </motion.div>
 
         {/* Problem cards */}
