@@ -67,7 +67,7 @@ export default function QuoteSection() {
           <span style={{ color: 'var(--c-sky)', fontStyle: 'normal', fontWeight: 700 }}>"why"</span>{' '}
           are crucial because quantitative data can be misleading and fail to capture the full picture of human behavior and value.
           <br />
-          <span style={{ color: 'var(--c-text-muted)', fontSize: '0.75em' }}>Data will drown out the magic of marketing.</span>
+          <span style={{ color: 'var(--c-text-muted)', fontSize: '0.75em' }}>Quantity in data to quality of data. Thats the hard part.</span>
         </motion.blockquote>
 
         <motion.div
