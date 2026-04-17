@@ -1,0 +1,168 @@
+import { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { DEPARTMENTS } from '../data/content';
+import SideSheet from './SideSheet';
+
+export default function DepartmentUseSection() {
+  const [visible, setVisible] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.1 });
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <section id="department-use" ref={ref} style={{ background: 'rgba(54,92,111,0.04)' }}>
+      <div className="content-wrap">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="section-label">Holistic Department Use</div>
+          <h2 className="section-title">Details That Create Plans<br />That Create Actions.</h2>
+          <p className="section-subtitle" style={{ marginBottom: 48 }}>
+            The system wasn't built for one team — it was designed for every team. Each department embedded persona outputs into their specific workflows. Click any department to see how.
+          </p>
+        </motion.div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 16 }}>
+          {DEPARTMENTS.map((dept, i) => (
+            <motion.div
+              key={dept.name}
+              initial={{ opacity: 0, y: 24 }}
+              animate={visible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              onClick={() => setSelected(dept)}
+              style={{
+                padding: '24px',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(120,172,175,0.1)',
+                borderRadius: 16,
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = `${dept.color}0d`;
+                e.currentTarget.style.borderColor = `${dept.color}40`;
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = `0 12px 32px rgba(0,0,0,0.3)`;
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                e.currentTarget.style.borderColor = 'rgba(120,172,175,0.1)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 12,
+                  background: `${dept.color}18`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <span className="material-icons-round" style={{ color: dept.color, fontSize: 22 }}>{dept.icon}</span>
+                </div>
+                <div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1rem', color: 'var(--c-white)', marginBottom: 4 }}>{dept.name}</div>
+                  <div style={{ fontSize: '0.7rem', color: dept.color, fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.06em' }}>
+                    {dept.uses.length} USE CASES
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {dept.uses.map(u => (
+                  <div key={u} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: '0.82rem', color: 'var(--c-text-secondary)' }}>
+                    <span className="material-icons-round" style={{ color: dept.color, fontSize: 14, flexShrink: 0, marginTop: 2 }}>arrow_right</span>
+                    {u}
+                  </div>
+                ))}
+              </div>
+
+              <div style={{
+                marginTop: 16, paddingTop: 14,
+                borderTop: '1px solid rgba(120,172,175,0.08)',
+                fontSize: '0.7rem',
+                color: 'var(--c-text-muted)',
+                fontFamily: 'var(--font-display)',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                display: 'flex', alignItems: 'center', gap: 6,
+              }}>
+                <span className="material-icons-round" style={{ fontSize: 14 }}>open_in_new</span>
+                VIEW FULL USE CASE
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Image placeholder */}
+        <div style={{
+          marginTop: 40,
+          width: '100%', height: 220,
+          background: 'rgba(255,255,255,0.02)',
+          border: '2px dashed rgba(120,172,175,0.15)',
+          borderRadius: 16,
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', justifyContent: 'center',
+          gap: 10, color: 'var(--c-text-muted)',
+        }}>
+          <span className="material-icons-round" style={{ fontSize: 36, color: 'rgba(120,172,175,0.25)' }}>image</span>
+          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>DEPARTMENT DASHBOARD — ADD URL</span>
+        </div>
+      </div>
+
+      {/* Side Sheet */}
+      <SideSheet
+        open={!!selected}
+        onClose={() => setSelected(null)}
+        title={selected?.name}
+        subtitle="Department Integration"
+      >
+        {selected && (
+          <div>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: 12,
+              padding: '16px', background: `${selected.color}10`,
+              border: `1px solid ${selected.color}25`, borderRadius: 12, marginBottom: 24,
+            }}>
+              <span className="material-icons-round" style={{ color: selected.color, fontSize: 26 }}>{selected.icon}</span>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.85rem', color: selected.color }}>
+                {selected.uses.length} Documented Use Cases
+              </div>
+            </div>
+
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: '0.68rem', fontFamily: 'var(--font-display)', fontWeight: 700, letterSpacing: '0.14em', color: 'var(--c-text-muted)', textTransform: 'uppercase', marginBottom: 10 }}>Use Cases</div>
+              {selected.uses.map(u => (
+                <div key={u} style={{
+                  display: 'flex', gap: 10, alignItems: 'flex-start',
+                  padding: '10px 14px',
+                  background: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(120,172,175,0.08)',
+                  borderRadius: 8, marginBottom: 6,
+                  fontSize: '0.88rem', color: 'var(--c-text-secondary)',
+                }}>
+                  <span className="material-icons-round" style={{ color: selected.color, fontSize: 16, flexShrink: 0 }}>check_circle</span>
+                  {u}
+                </div>
+              ))}
+            </div>
+
+            <div>
+              <div style={{ fontSize: '0.68rem', fontFamily: 'var(--font-display)', fontWeight: 700, letterSpacing: '0.14em', color: 'var(--c-text-muted)', textTransform: 'uppercase', marginBottom: 10 }}>How They Used the System</div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--c-text-secondary)', lineHeight: 1.7, padding: '16px', background: 'rgba(255,255,255,0.03)', borderRadius: 10, border: '1px solid rgba(120,172,175,0.08)' }}>
+                {selected.detail}
+              </p>
+            </div>
+          </div>
+        )}
+      </SideSheet>
+    </section>
+  );
+}
