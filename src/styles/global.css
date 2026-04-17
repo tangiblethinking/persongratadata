@@ -1,18 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 
 :root {
-  --c-sky: #78ACAF;
-  --c-teal: #438F9C;
-  --c-navy: #365C6F;
-  --c-deep: #17252E;
-  --c-rust: #5F331D;
-  --c-amber: #A56935;
-  --c-white: #F4F7F8;
-  --c-glass: rgba(255,255,255,0.06);
-  --c-glass-border: rgba(120,172,175,0.18);
-  --c-text-primary: #F4F7F8;
-  --c-text-secondary: rgba(244,247,248,0.65);
-  --c-text-muted: rgba(244,247,248,0.38);
+  --c-sky: #71C3FD;
+  --c-teal: #4F7793;
+  --c-navy: #0B4A7F;
+  --c-deep: #0F2B4E;
+  --c-rust: #FF7F00;
+  --c-amber: #FFCE85;
+  --c-white: #F8F4F4;
+  --c-glass: rgba(255,255,255,0.15);
+  --c-glass-border: rgba(100,146,149,0.18);
+  --c-text-primary: #F8F4F4;
+  --c-text-secondary: F8F8F4;
+  --c-text-muted: F6F4F8;
 
 --font-display: 'DM Sans', sans-serif;
 --font-body: 'DM Sans', sans-serif;
