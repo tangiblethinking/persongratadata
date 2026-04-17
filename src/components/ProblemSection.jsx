@@ -152,7 +152,7 @@ export default function ProblemSection() {
   style={{ marginBottom: 40 }}
 >
   <img
-    src="https://learn.microsoft.com/en-us/power-bi/create-reports/media/service-dashboards/power-bi-dashboard2.png"
+    src="https://www.brother.co.uk/-/media/images/brother-uk/blog/header-images/the-rise-of-office-robotics-2x.jpg?rev=8af4caff0a074738a5ef618888960b3c&mw=1170&hash=AA45DB6BB3951934B48FBB17C39D4F97"
     alt="Problem overview"
     style={{ width: '100%', borderRadius: 20, objectFit: 'cover', display: 'block' }}
   />
