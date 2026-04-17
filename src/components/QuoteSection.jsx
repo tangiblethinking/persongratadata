@@ -68,7 +68,7 @@ export default function QuoteSection() {
 are crucial because quantitative data can be misleading and fail to capture the full picture of human behavior and value.
 <br />
 <span style={{ color: 'var(--c-text-muted)', fontSize: '0.75em' }}>Quantity in data to quality of data. This reveals the{' '}
-<span style={{ color: 'var(--c-sky)', fontStyle: 'normal', fontWeight: 700 }}>"why"</span>.</span>
+<span style={{ color: 'var(--c-sky)', fontStyle: 'italic', fontWeight: 700 }}>"why"</span>.</span>
         </motion.blockquote>
 
         <motion.div
