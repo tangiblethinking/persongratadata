@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { PROBLEM_POINTS } from '../data/content';
 import Tooltip from './Tooltip';
+import ImageSlot from './ImageSlot';
 
 function ProblemCard({ item, index }) {
   const [visible, setVisible] = useState(false);
@@ -144,19 +145,20 @@ export default function ProblemSection() {
           </p>
         </motion.div>
 
-        {/* Image placeholder */}
+        {/* Image slot */}
         <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={visible ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 0.6, delay: 0.15 }}
-  style={{ marginBottom: 40 }}
->
-  <img
-    src="https://www.brother.co.uk/-/media/images/brother-uk/blog/header-images/the-rise-of-office-robotics-2x.jpg?rev=8af4caff0a074738a5ef618888960b3c&mw=1170&hash=AA45DB6BB3951934B48FBB17C39D4F97"
-    alt="Problem overview"
-    style={{ width: '100%', borderRadius: 20, objectFit: 'cover', display: 'block' }}
-  />
-</motion.div>
+          initial={{ opacity: 0, y: 20 }}
+          animate={visible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          style={{ marginBottom: 40 }}
+        >
+          <ImageSlot
+            src="https://www.brother.co.uk/-/media/images/brother-uk/blog/header-images/the-rise-of-office-robotics-2x.jpg?rev=8af4caff0a074738a5ef618888960b3c&mw=1170&hash=AA45DB6BB3951934B48FBB17C39D4F97"
+            alt="Problem overview"
+            title="The Problem"
+            height={280}
+          />
+        </motion.div>
 
         {/* Problem cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))', gap: 16 }}>

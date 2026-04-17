@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TOOL_MODES } from '../data/content';
+import ImageSlot from './ImageSlot';
 
 export default function ToolSection() {
   const [activeMode, setActiveMode] = useState(0);
@@ -161,21 +162,13 @@ export default function ToolSection() {
               </div>
             </div>
 
-            {/* Image placeholder */}
-            <div style={{
-              width: '100%', height: 220,
-              background: 'rgba(255,255,255,0.02)',
-              border: '2px dashed rgba(120,172,175,0.15)',
-              borderRadius: 16,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              gap: 10, color: 'var(--c-text-muted)',
-            }}>
-              <span className="material-icons-round" style={{ fontSize: 36, color: 'rgba(120,172,175,0.25)' }}>image</span>
-              <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>
-                {mode.mode.toUpperCase()} MODE — TOOL SCREENSHOT PLACEHOLDER
-              </span>
-            </div>
+            {/* Image slot */}
+            <ImageSlot
+              src=""
+              title={`${mode.mode} Mode — The Tool`}
+              label={`${mode.mode.toUpperCase()} MODE — TOOL SCREENSHOT PLACEHOLDER`}
+              height={220}
+            />
           </motion.div>
         </AnimatePresence>
       </div>

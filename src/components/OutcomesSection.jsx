@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { OUTCOMES } from '../data/content';
+import ImageSlot from './ImageSlot';
 
 function AnimatedNumber({ target, prefix = '', suffix = '', duration = 2000 }) {
   const [current, setCurrent] = useState(0);
@@ -15,7 +16,6 @@ function AnimatedNumber({ target, prefix = '', suffix = '', duration = 2000 }) {
 
   useEffect(() => {
     if (!started) return;
-    const isNeg = String(target).includes('-');
     const numStr = String(target).replace(/[^0-9.]/g, '');
     const end = parseFloat(numStr);
     const start = Date.now();
@@ -38,15 +38,33 @@ function BeforeAfterSlider({ outcome }) {
   const sliderRef = useRef(null);
   const dragging = useRef(false);
 
-  const getPos = (clientX) => {
+  const getPos = useCallback((clientX) => {
     const rect = sliderRef.current.getBoundingClientRect();
-    return Math.max(5, Math.min(95, ((clientX - rect.left) / rect.width) * 100));
-  };
+    // Full 0–100 range with tiny padding so handle stays visible
+    return Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
+  }, []);
 
-  const onMouseDown = () => { dragging.current = true; };
-  const onMouseMove = useCallback((e) => { if (dragging.current) setPos(getPos(e.clientX)); }, []);
+  const onMouseDown = useCallback((e) => {
+    e.preventDefault();
+    dragging.current = true;
+  }, []);
+
+  const onMouseMove = useCallback((e) => {
+    if (dragging.current) setPos(getPos(e.clientX));
+  }, [getPos]);
+
   const onMouseUp = useCallback(() => { dragging.current = false; }, []);
-  const onTouchMove = useCallback((e) => { setPos(getPos(e.touches[0].clientX)); }, []);
+
+  const onTouchStart = useCallback((e) => {
+    dragging.current = true;
+    setPos(getPos(e.touches[0].clientX));
+  }, [getPos]);
+
+  const onTouchMove = useCallback((e) => {
+    if (dragging.current) setPos(getPos(e.touches[0].clientX));
+  }, [getPos]);
+
+  const onTouchEnd = useCallback(() => { dragging.current = false; }, []);
 
   useEffect(() => {
     window.addEventListener('mousemove', onMouseMove);
@@ -64,68 +82,111 @@ function BeforeAfterSlider({ outcome }) {
     <div
       ref={sliderRef}
       onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       style={{
         position: 'relative',
         width: '100%',
-        height: 120,
+        height: 140,
         borderRadius: 14,
         overflow: 'hidden',
         cursor: 'ew-resize',
         userSelect: 'none',
         border: '1px solid rgba(120,172,175,0.15)',
+        touchAction: 'none',
       }}
     >
-      {/* Before panel */}
+      {/* ── BEFORE panel (left side) ── */}
       <div style={{
-        position: 'absolute', inset: 0,
+        position: 'absolute',
+        inset: 0,
         background: 'linear-gradient(135deg, rgba(95,51,29,0.25), rgba(165,105,53,0.15))',
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'flex-start', justifyContent: 'center',
-        padding: '16px 20px',
         clipPath: `inset(0 ${100 - pos}% 0 0)`,
-        transition: 'none',
+        overflow: 'hidden',
       }}>
+        {/* BEFORE pill — anchored top-left inside panel, always visible when panel is shown */}
         {showBefore && (
           <span style={{
-            fontSize: '0.62rem', fontFamily: 'var(--font-display)', fontWeight: 700,
-            letterSpacing: '0.12em', color: '#cf6679',
-            background: 'rgba(207,102,121,0.15)', border: '1px solid rgba(207,102,121,0.3)',
-            padding: '3px 10px', borderRadius: 100, marginBottom: 8,
+            position: 'absolute',
+            top: 12,
+            left: 14,
+            zIndex: 3,
+            fontSize: '0.62rem',
+            fontFamily: 'var(--font-display)',
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            color: '#cf6679',
+            background: 'rgba(207,102,121,0.18)',
+            border: '1px solid rgba(207,102,121,0.35)',
+            padding: '3px 10px',
+            borderRadius: 100,
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
           }}>BEFORE</span>
         )}
-        <div style={{ fontSize: '0.88rem', color: 'var(--c-text-secondary)', lineHeight: 1.5 }}>
+        <div style={{
+          position: 'absolute',
+          bottom: 16,
+          left: 14,
+          right: 14,
+          fontSize: '0.84rem',
+          color: 'var(--c-text-secondary)',
+          lineHeight: 1.5,
+          pointerEvents: 'none',
+        }}>
           {outcome.before}
         </div>
       </div>
 
-      {/* After panel */}
+      {/* ── AFTER panel (right side) ── */}
       <div style={{
-        position: 'absolute', inset: 0,
+        position: 'absolute',
+        inset: 0,
         background: 'linear-gradient(135deg, rgba(67,143,156,0.2), rgba(54,92,111,0.15))',
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'flex-end', justifyContent: 'center',
-        padding: '16px 20px',
         clipPath: `inset(0 0 0 ${pos}%)`,
+        overflow: 'hidden',
       }}>
+        {/* AFTER pill — anchored top-right inside panel */}
         {showAfter && (
           <span style={{
-            fontSize: '0.62rem', fontFamily: 'var(--font-display)', fontWeight: 700,
-            letterSpacing: '0.12em', color: '#4caf89',
-            background: 'rgba(76,175,137,0.15)', border: '1px solid rgba(76,175,137,0.3)',
-            padding: '3px 10px', borderRadius: 100, marginBottom: 8,
-            alignSelf: 'flex-start',
+            position: 'absolute',
+            top: 12,
+            right: 14,
+            zIndex: 3,
+            fontSize: '0.62rem',
+            fontFamily: 'var(--font-display)',
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            color: '#4caf89',
+            background: 'rgba(76,175,137,0.18)',
+            border: '1px solid rgba(76,175,137,0.35)',
+            padding: '3px 10px',
+            borderRadius: 100,
+            whiteSpace: 'nowrap',
+            pointerEvents: 'none',
           }}>AFTER</span>
         )}
-        <div style={{ fontSize: '0.88rem', color: 'var(--c-text-secondary)', lineHeight: 1.5, textAlign: 'right' }}>
+        <div style={{
+          position: 'absolute',
+          bottom: 16,
+          left: 14,
+          right: 14,
+          fontSize: '0.84rem',
+          color: 'var(--c-text-secondary)',
+          lineHeight: 1.5,
+          textAlign: 'right',
+          pointerEvents: 'none',
+        }}>
           {outcome.after}
         </div>
       </div>
 
-      {/* Divider handle */}
+      {/* ── Divider + handle ── */}
       <div style={{
         position: 'absolute',
-        top: 0, bottom: 0,
+        top: 0,
+        bottom: 0,
         left: `${pos}%`,
         transform: 'translateX(-50%)',
         width: 2,
@@ -133,10 +194,12 @@ function BeforeAfterSlider({ outcome }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 2,
+        zIndex: 4,
+        pointerEvents: 'none',
       }}>
         <div style={{
-          width: 28, height: 28,
+          width: 28,
+          height: 28,
           borderRadius: '50%',
           background: 'var(--c-deep)',
           border: '2px solid rgba(120,172,175,0.6)',
@@ -144,6 +207,7 @@ function BeforeAfterSlider({ outcome }) {
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+          pointerEvents: 'none',
         }}>
           <span className="material-icons-round" style={{ fontSize: 14, color: 'var(--c-sky)' }}>swap_horiz</span>
         </div>
@@ -251,19 +315,14 @@ export default function OutcomesSection() {
           ))}
         </div>
 
-        {/* Image placeholder */}
-        <div style={{
-          marginTop: 40,
-          width: '100%', height: 220,
-          background: 'rgba(255,255,255,0.02)',
-          border: '2px dashed rgba(120,172,175,0.15)',
-          borderRadius: 16,
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          gap: 10, color: 'var(--c-text-muted)',
-        }}>
-          <span className="material-icons-round" style={{ fontSize: 36, color: 'rgba(120,172,175,0.25)' }}>image</span>
-          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>OUTCOMES DASHBOARD — ADD URL</span>
+        {/* Image slot */}
+        <div style={{ marginTop: 40 }}>
+          <ImageSlot
+            src=""
+            title="Key Outcomes"
+            label="OUTCOMES DASHBOARD — ADD URL"
+            height={220}
+          />
         </div>
       </div>
     </section>

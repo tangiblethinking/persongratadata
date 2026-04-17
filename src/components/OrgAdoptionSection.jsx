@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ImageSlot from './ImageSlot';
 import { ORG_LAYERS } from '../data/content';
 import SideSheet from './SideSheet';
 
@@ -213,19 +214,14 @@ export default function OrgAdoptionSection() {
           })}
         </div>
 
-        {/* Image placeholder */}
-        <div style={{
-          marginTop: 40,
-          width: '100%', height: 200,
-          background: 'rgba(255,255,255,0.02)',
-          border: '2px dashed rgba(120,172,175,0.15)',
-          borderRadius: 16,
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          gap: 10, color: 'var(--c-text-muted)',
-        }}>
-          <span className="material-icons-round" style={{ fontSize: 36, color: 'rgba(120,172,175,0.25)' }}>image</span>
-          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>ORG ADOPTION DIAGRAM — ADD URL</span>
+        {/* Image slot */}
+        <div style={{ marginTop: 40 }}>
+          <ImageSlot
+            src=""
+            title="Organizational Adoption"
+            label="ORG ADOPTION DIAGRAM — ADD URL"
+            height={200}
+          />
         </div>
       </div>
 

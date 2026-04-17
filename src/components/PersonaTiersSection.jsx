@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PERSONA_TIERS } from '../data/content';
 import SideSheet from './SideSheet';
+import ImageSlot from './ImageSlot';
 
 function ConstellationOrbit({ tier, index, onSelect, isSelected, containerSize }) {
   const cx = containerSize / 2;
@@ -259,19 +260,14 @@ export default function PersonaTiersSection() {
           </div>
         </div>
 
-        {/* Image placeholder */}
-        <div style={{
-          marginTop: 40,
-          width: '100%', height: 200,
-          background: 'rgba(255,255,255,0.02)',
-          border: '2px dashed rgba(120,172,175,0.15)',
-          borderRadius: 16,
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          gap: 10, color: 'var(--c-text-muted)',
-        }}>
-          <span className="material-icons-round" style={{ fontSize: 36, color: 'rgba(120,172,175,0.25)' }}>image</span>
-          <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.1em' }}>PERSONA OUTPUT SCREENSHOT — ADD URL</span>
+        {/* Image slot */}
+        <div style={{ marginTop: 40 }}>
+          <ImageSlot
+            src=""
+            title="Persona Output"
+            label="PERSONA OUTPUT SCREENSHOT — ADD URL"
+            height={200}
+          />
         </div>
       </div>
 
@@ -342,19 +338,14 @@ export default function PersonaTiersSection() {
               ))}
             </div>
 
-            {/* Image placeholder */}
-            <div style={{
-              marginTop: 24,
-              width: '100%', height: 160,
-              background: 'rgba(255,255,255,0.02)',
-              border: '2px dashed rgba(120,172,175,0.12)',
-              borderRadius: 12,
-              display: 'flex', flexDirection: 'column',
-              alignItems: 'center', justifyContent: 'center',
-              gap: 8, color: 'var(--c-text-muted)',
-            }}>
-              <span className="material-icons-round" style={{ fontSize: 28, color: 'rgba(120,172,175,0.25)' }}>image</span>
-              <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-display)', fontWeight: 600, letterSpacing: '0.08em' }}>{selectedTier.tier.toUpperCase()} PERSONA CARD — ADD URL</span>
+            {/* Image slot */}
+            <div style={{ marginTop: 24 }}>
+              <ImageSlot
+                src=""
+                title={selectedTier.tier}
+                label={`${selectedTier.tier.toUpperCase()} PERSONA CARD — ADD URL`}
+                height={160}
+              />
             </div>
           </div>
         )}
