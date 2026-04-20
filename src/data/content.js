@@ -119,7 +119,7 @@ export const PERSONA_TIERS = [
       Product: 'Simplified onboarding, social proof integration, low-risk CTAs',
       UX: 'Reduce cognitive load, clarify value, streamline first-touch flows',
     },
-    imageUrl: '', // ← Unaware tier side sheet image URL
+    imageUrl: 'https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/1f14f0fe-840d-47d7-897e-4d5160013421.png?h=79c4591e23a261e2f06e874d52f457ec', // ← Unaware tier side sheet image URL
   },
   {
     id: 'vip',
@@ -136,7 +136,7 @@ export const PERSONA_TIERS = [
       Product: 'Feature reminders, loyalty program visibility, frictionless re-entry',
       UX: 'Reduce re-onboarding friction, surface missed value, proactive outreach triggers',
     },
-    imageUrl: '', // ← VIP tier side sheet image URL
+    imageUrl: 'https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/db479b5a-2c39-480d-aae4-8f667b13de3e.png?h=8b1764ec6d6055a36f98cf67d73413eb', // ← VIP tier side sheet image URL
   },
   {
     id: 'ambassador',
@@ -153,7 +153,7 @@ export const PERSONA_TIERS = [
       Product: 'Advanced features, business tools, priority support pathways',
       UX: 'Power-user flows, business dashboard access, reduced friction at every touchpoint',
     },
-    imageUrl: '', // ← Ambassador tier side sheet image URL
+    imageUrl: 'https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/0d67466a-b4fd-4b1c-b565-23ceb4baea1d.png?h=886d917df6e34a9d56d455660096387c', // ← Ambassador tier side sheet image URL
   },
 ]; = [
   {
