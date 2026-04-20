@@ -126,7 +126,7 @@ export default function ImageSlot({
         width: '100%',
         height: '100%',
         objectFit: 'cover',
-        objectPosition: 'center',
+        objectPosition: 'top',
         display: 'block',
         // Animated zoom on hover
         transform: hovered ? 'scale(1.06)' : 'scale(1)',
