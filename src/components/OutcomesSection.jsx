@@ -40,7 +40,6 @@ function BeforeAfterSlider({ outcome }) {
 
   const getPos = useCallback((clientX) => {
     const rect = sliderRef.current.getBoundingClientRect();
-    // Full 0–100 range with tiny padding so handle stays visible
     return Math.max(2, Math.min(98, ((clientX - rect.left) / rect.width) * 100));
   }, []);
 
@@ -75,9 +74,7 @@ function BeforeAfterSlider({ outcome }) {
     };
   }, [onMouseMove, onMouseUp]);
 
-  const showBefore = pos > 50;
-  const showAfter = pos <= 50;
-
+  // Pills are always visible — no conditional hiding based on pos
   return (
     <div
       ref={sliderRef}
@@ -97,34 +94,14 @@ function BeforeAfterSlider({ outcome }) {
         touchAction: 'none',
       }}
     >
-      {/* ── BEFORE panel (left side) ── */}
+      {/* ── BEFORE panel (left side, clipped) ── */}
       <div style={{
         position: 'absolute',
         inset: 0,
         background: 'linear-gradient(135deg, rgba(95,51,29,0.25), rgba(165,105,53,0.15))',
         clipPath: `inset(0 ${100 - pos}% 0 0)`,
-        overflow: 'hidden',
       }}>
-        {/* BEFORE pill — anchored top-left inside panel, always visible when panel is shown */}
-        {showBefore && (
-          <span style={{
-            position: 'absolute',
-            top: 12,
-            left: 14,
-            zIndex: 3,
-            fontSize: '0.62rem',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            color: '#cf6679',
-            background: 'rgba(207,102,121,0.18)',
-            border: '1px solid rgba(207,102,121,0.35)',
-            padding: '3px 10px',
-            borderRadius: 100,
-            whiteSpace: 'nowrap',
-            pointerEvents: 'none',
-          }}>BEFORE</span>
-        )}
+        {/* Before text — bottom-left */}
         <div style={{
           position: 'absolute',
           bottom: 16,
@@ -139,34 +116,14 @@ function BeforeAfterSlider({ outcome }) {
         </div>
       </div>
 
-      {/* ── AFTER panel (right side) ── */}
+      {/* ── AFTER panel (right side, clipped) ── */}
       <div style={{
         position: 'absolute',
         inset: 0,
         background: 'linear-gradient(135deg, rgba(67,143,156,0.2), rgba(54,92,111,0.15))',
         clipPath: `inset(0 0 0 ${pos}%)`,
-        overflow: 'hidden',
       }}>
-        {/* AFTER pill — anchored top-right inside panel */}
-        {showAfter && (
-          <span style={{
-            position: 'absolute',
-            top: 12,
-            right: 14,
-            zIndex: 3,
-            fontSize: '0.62rem',
-            fontFamily: 'var(--font-display)',
-            fontWeight: 700,
-            letterSpacing: '0.12em',
-            color: '#4caf89',
-            background: 'rgba(76,175,137,0.18)',
-            border: '1px solid rgba(76,175,137,0.35)',
-            padding: '3px 10px',
-            borderRadius: 100,
-            whiteSpace: 'nowrap',
-            pointerEvents: 'none',
-          }}>AFTER</span>
-        )}
+        {/* After text — bottom-right */}
         <div style={{
           position: 'absolute',
           bottom: 16,
@@ -181,6 +138,45 @@ function BeforeAfterSlider({ outcome }) {
           {outcome.after}
         </div>
       </div>
+
+      {/* ── Pills — outside clipped panels so they never get cut ── */}
+      {/* BEFORE pill: top-left, always shown */}
+      <span style={{
+        position: 'absolute',
+        top: 12,
+        left: 14,
+        zIndex: 5,
+        fontSize: '0.62rem',
+        fontFamily: 'var(--font-display)',
+        fontWeight: 700,
+        letterSpacing: '0.12em',
+        color: '#cf6679',
+        background: 'rgba(207,102,121,0.18)',
+        border: '1px solid rgba(207,102,121,0.35)',
+        padding: '3px 10px',
+        borderRadius: 100,
+        whiteSpace: 'nowrap',
+        pointerEvents: 'none',
+      }}>BEFORE</span>
+
+      {/* AFTER pill: top-right, always shown */}
+      <span style={{
+        position: 'absolute',
+        top: 12,
+        right: 14,
+        zIndex: 5,
+        fontSize: '0.62rem',
+        fontFamily: 'var(--font-display)',
+        fontWeight: 700,
+        letterSpacing: '0.12em',
+        color: '#4caf89',
+        background: 'rgba(76,175,137,0.18)',
+        border: '1px solid rgba(76,175,137,0.35)',
+        padding: '3px 10px',
+        borderRadius: 100,
+        whiteSpace: 'nowrap',
+        pointerEvents: 'none',
+      }}>AFTER</span>
 
       {/* ── Divider + handle ── */}
       <div style={{
@@ -321,7 +317,7 @@ export default function OutcomesSection() {
             src=""
             title="Key Outcomes"
             label="OUTCOMES DASHBOARD — ADD URL"
-            height={220}
+            height={200}
           />
         </div>
       </div>
