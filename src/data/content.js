@@ -155,7 +155,9 @@ export const PERSONA_TIERS = [
     },
     imageUrl: 'https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/0d67466a-b4fd-4b1c-b565-23ceb4baea1d.png?h=886d917df6e34a9d56d455660096387c', // ← Ambassador tier side sheet image URL
   },
-]; = [
+];
+
+export const DEPARTMENTS = [
   {
     icon: 'science',
     name: 'Research & Analysis',
