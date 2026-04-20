@@ -341,7 +341,7 @@ export default function PersonaTiersSection() {
             {/* Image slot */}
             <div style={{ marginTop: 24 }}>
               <ImageSlot
-                src=""
+                src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/0d67466a-b4fd-4b1c-b565-23ceb4baea1d.png?h=886d917df6e34a9d56d455660096387c"
                 title={selectedTier.tier}
                 label={`${selectedTier.tier.toUpperCase()} PERSONA CARD — ADD URL`}
                 height={160}
