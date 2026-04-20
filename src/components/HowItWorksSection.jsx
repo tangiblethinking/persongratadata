@@ -192,7 +192,7 @@ export default function HowItWorksSection() {
         {/* Image slot */}
         <div style={{ marginTop: 40 }}>
           <ImageSlot
-            src=""
+            src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/688391a7-78a1-4dfa-af93-0b317d68a39a.png?h=23b53c37674b76e8bc8b1019d270e4dc"
             title="How It Works"
             label="INPUT FLOW DIAGRAM — ADD URL"
             height={200}
