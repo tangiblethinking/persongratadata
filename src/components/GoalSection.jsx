@@ -47,7 +47,7 @@ export default function GoalSection() {
       }} />
 
       <div className="content-wrap" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: 60, alignItems: 'center' }}>
 
           {/* Left: copy */}
           <div>

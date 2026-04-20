@@ -103,7 +103,7 @@ export default function ValidationSection() {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 48, alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: 48, alignItems: 'start' }}>
 
           {/* Flow nodes */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>

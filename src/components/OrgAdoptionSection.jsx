@@ -151,7 +151,7 @@ export default function OrgAdoptionSection() {
                           borderTop: 'none',
                           borderRadius: '0 0 16px 16px',
                         }}>
-                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: 20 }}>
                             <div>
                               <div style={{ fontSize: '0.67rem', fontFamily: 'var(--font-display)', fontWeight: 700, letterSpacing: '0.14em', color: 'var(--c-text-muted)', textTransform: 'uppercase', marginBottom: 10 }}>Accountability</div>
                               {layer.accountability.map((a, j) => (

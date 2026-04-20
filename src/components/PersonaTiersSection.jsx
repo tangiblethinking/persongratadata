@@ -143,7 +143,7 @@ export default function PersonaTiersSection() {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: 48, alignItems: 'center' }}>
 
           {/* Constellation */}
           <motion.div
