@@ -8,22 +8,23 @@ import { motion, AnimatePresence } from 'framer-motion';
  * A fixed-dimension image container that:
  *  - Holds a static size regardless of the image's native aspect ratio
  *  - Shows a styled placeholder when no src is provided
- *  - Applies a hover overlay with a zoom/expand cue
- *  - Opens a fullscreen lightbox on click (with title, X button, ESC key)
+ *  - Applies a hover: white border glow + brightness overlay + animated zoom
+ *  - Opens a fullscreen lightbox on click (with white title, X button, ESC key)
+ *  - Fully responsive: 100% width, locked height, mobile optimised
  *
  * Props:
- *   src        {string}  — image URL. Empty string or undefined = placeholder mode
- *   alt        {string}  — alt text
- *   title      {string}  — displayed in white in the fullscreen overlay header
- *   height     {number}  — container height in px (default 220)
- *   borderRadius {number} — (default 16)
- *   label      {string}  — placeholder label text shown when no src
+ *   src          {string}  — image URL. Empty string or undefined = placeholder mode
+ *   alt          {string}  — alt text
+ *   title        {string}  — displayed in white in the fullscreen overlay header
+ *   height       {number}  — container height in px (default 200)
+ *   borderRadius {number}  — (default 16)
+ *   label        {string}  — placeholder label text shown when no src
  */
 export default function ImageSlot({
   src,
   alt = '',
   title = '',
-  height = 220,
+  height = 200,
   borderRadius = 16,
   label = 'ADD IMAGE URL',
 }) {
@@ -31,13 +32,8 @@ export default function ImageSlot({
   const [lightbox, setLightbox] = useState(false);
   const hasImage = !!src;
 
-  const openLightbox = useCallback(() => {
-    setLightbox(true);
-  }, []);
-
-  const closeLightbox = useCallback(() => {
-    setLightbox(false);
-  }, []);
+  const openLightbox = useCallback(() => { if (hasImage) setLightbox(true); }, [hasImage]);
+  const closeLightbox = useCallback(() => setLightbox(false), []);
 
   // ESC key to close
   useEffect(() => {
@@ -49,39 +45,45 @@ export default function ImageSlot({
 
   // Lock body scroll when lightbox open
   useEffect(() => {
-    if (lightbox) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = lightbox ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [lightbox]);
 
-  // ─── Container style ──────────────────────────────────────────────────────
+  // ─── Container ────────────────────────────────────────────────────────────
+  // height and min-height both set so flex parents can never stretch it
   const containerStyle = {
     position: 'relative',
     width: '100%',
     height,
+    minHeight: height,
+    maxHeight: height,
     borderRadius,
     overflow: 'hidden',
-    cursor: 'pointer',
+    cursor: hasImage ? 'pointer' : 'default',
     flexShrink: 0,
-    border: hasImage
-      ? '1px solid rgba(120,172,175,0.15)'
-      : '2px dashed rgba(120,172,175,0.15)',
-    background: hasImage ? 'rgba(255,255,255,0.02)' : 'rgba(255,255,255,0.02)',
-    transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
-    boxShadow: hovered ? '0 0 0 2px rgba(67,143,156,0.45), 0 8px 32px rgba(0,0,0,0.35)' : 'none',
+    flexGrow: 0,
+    // Border: white-ish glow on hover, subtle teal otherwise
+    border: hovered && hasImage
+      ? '1.5px solid rgba(248,244,244,0.75)'
+      : hasImage
+        ? '1px solid rgba(120,172,175,0.15)'
+        : '2px dashed rgba(120,172,175,0.15)',
+    background: 'rgba(255,255,255,0.02)',
+    // Box shadow brightens on hover
+    boxShadow: hovered && hasImage
+      ? '0 0 0 3px rgba(248,244,244,0.12), 0 8px 32px rgba(0,0,0,0.4)'
+      : 'none',
+    transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
   };
 
-  // ─── Hover overlay ────────────────────────────────────────────────────────
-  const hoverOverlay = (
+  // ─── Hover overlay (brightness + label) ───────────────────────────────────
+  const hoverOverlay = hasImage && (
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        background: 'rgba(10,20,26,0.52)',
-        backdropFilter: 'blur(2px)',
+        // Brightness overlay via a semi-transparent white layer
+        background: 'rgba(255,255,255,0.10)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -94,9 +96,9 @@ export default function ImageSlot({
     >
       <span
         className="material-icons-round"
-        style={{ color: '#fff', fontSize: 28 }}
+        style={{ color: '#fff', fontSize: 28, filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.5))' }}
       >
-        {hasImage ? 'zoom_in' : 'add_photo_alternate'}
+        zoom_in
       </span>
       <span
         style={{
@@ -105,14 +107,15 @@ export default function ImageSlot({
           fontWeight: 700,
           fontSize: '0.75rem',
           letterSpacing: '0.1em',
+          filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.5))',
         }}
       >
-        {hasImage ? 'VIEW FULLSCREEN' : 'IMAGE SLOT'}
+        VIEW FULLSCREEN
       </span>
     </div>
   );
 
-  // ─── Image or Placeholder content ────────────────────────────────────────
+  // ─── Image (with zoom transition) ─────────────────────────────────────────
   const inner = hasImage ? (
     <img
       src={src}
@@ -123,12 +126,16 @@ export default function ImageSlot({
         width: '100%',
         height: '100%',
         objectFit: 'cover',
+        objectPosition: 'center',
         display: 'block',
-        transform: hovered ? 'scale(1.04)' : 'scale(1)',
-        transition: 'transform 0.35s ease',
+        // Animated zoom on hover
+        transform: hovered ? 'scale(1.06)' : 'scale(1)',
+        transition: 'transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)',
+        willChange: 'transform',
       }}
     />
   ) : (
+    // ─── Placeholder ──────────────────────────────────────────────────────
     <div
       style={{
         position: 'absolute',
@@ -146,8 +153,6 @@ export default function ImageSlot({
         style={{
           fontSize: 36,
           color: 'rgba(120,172,175,0.25)',
-          transform: hovered ? 'scale(1.15)' : 'scale(1)',
-          transition: 'transform 0.3s ease',
         }}
       >
         image
@@ -160,6 +165,7 @@ export default function ImageSlot({
           letterSpacing: '0.1em',
           textAlign: 'center',
           padding: '0 16px',
+          color: 'rgba(120,172,175,0.45)',
         }}
       >
         {label}
@@ -183,14 +189,14 @@ export default function ImageSlot({
             inset: 0,
             zIndex: 99999,
             background: 'rgba(8,16,22,0.95)',
-            backdropFilter: 'blur(12px)',
+            backdropFilter: 'blur(14px)',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          {/* Header bar */}
+          {/* Header bar with white title */}
           <div
             onClick={e => e.stopPropagation()}
             style={{
@@ -202,7 +208,7 @@ export default function ImageSlot({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              background: 'linear-gradient(to bottom, rgba(8,16,22,0.9) 0%, transparent 100%)',
+              background: 'linear-gradient(to bottom, rgba(8,16,22,0.92) 0%, transparent 100%)',
               zIndex: 100000,
             }}
           >
@@ -240,7 +246,7 @@ export default function ImageSlot({
             </button>
           </div>
 
-          {/* Image or placeholder */}
+          {/* Fullscreen image */}
           <motion.div
             onClick={e => e.stopPropagation()}
             initial={{ scale: 0.88, opacity: 0 }}
@@ -253,52 +259,19 @@ export default function ImageSlot({
               borderRadius: 16,
               overflow: 'hidden',
               boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
-              border: '1px solid rgba(120,172,175,0.2)',
+              border: '1px solid rgba(248,244,244,0.15)',
             }}
           >
-            {hasImage ? (
-              <img
-                src={src}
-                alt={alt}
-                style={{
-                  display: 'block',
-                  maxWidth: '100%',
-                  maxHeight: '80vh',
-                  objectFit: 'contain',
-                }}
-              />
-            ) : (
-              <div
-                style={{
-                  width: 'min(80vw, 640px)',
-                  height: 360,
-                  background: 'rgba(255,255,255,0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 14,
-                }}
-              >
-                <span
-                  className="material-icons-round"
-                  style={{ fontSize: 56, color: 'rgba(120,172,175,0.25)' }}
-                >
-                  image
-                </span>
-                <span
-                  style={{
-                    color: 'rgba(120,172,175,0.5)',
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 600,
-                    fontSize: '0.85rem',
-                    letterSpacing: '0.1em',
-                  }}
-                >
-                  {label}
-                </span>
-              </div>
-            )}
+            <img
+              src={src}
+              alt={alt}
+              style={{
+                display: 'block',
+                maxWidth: '100%',
+                maxHeight: '80vh',
+                objectFit: 'contain',
+              }}
+            />
           </motion.div>
 
           {/* ESC hint */}
@@ -328,10 +301,10 @@ export default function ImageSlot({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         onClick={openLightbox}
-        role="button"
-        tabIndex={0}
-        aria-label={hasImage ? `View ${title} fullscreen` : `Image slot: ${label}`}
-        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(); }}
+        role={hasImage ? 'button' : undefined}
+        tabIndex={hasImage ? 0 : undefined}
+        aria-label={hasImage ? `View ${title} fullscreen` : undefined}
+        onKeyDown={hasImage ? (e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(); }) : undefined}
       >
         {inner}
         {hoverOverlay}

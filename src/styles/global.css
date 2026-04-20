@@ -218,3 +218,20 @@ section {
   section { padding: 60px 20px; }
   .section-title { font-size: clamp(1.6rem, 6vw, 2.5rem); }
 }
+
+/* ── Image Slot: static container, full-width on all screens ── */
+/* Ensures the fixed-height container never collapses or stretches
+   due to flex/grid parent behaviour on any viewport size.          */
+[data-image-slot] {
+  display: block;
+  width: 100%;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+@media (max-width: 768px) {
+  [data-image-slot] {
+    width: 100% !important;
+    /* height is locked via inline style — do not override */
+  }
+}

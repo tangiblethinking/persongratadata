@@ -108,7 +108,7 @@ export default function DepartmentUseSection() {
             src=""
             title="Holistic Department Use"
             label="DEPARTMENT DASHBOARD — ADD URL"
-            height={220}
+            height={200}
           />
         </div>
       </div>

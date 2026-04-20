@@ -195,7 +195,7 @@ export default function HowItWorksSection() {
             src=""
             title="How It Works"
             label="INPUT FLOW DIAGRAM — ADD URL"
-            height={220}
+            height={200}
           />
         </div>
       </div>

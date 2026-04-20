@@ -167,7 +167,7 @@ export default function ToolSection() {
               src=""
               title={`${mode.mode} Mode — The Tool`}
               label={`${mode.mode.toUpperCase()} MODE — TOOL SCREENSHOT PLACEHOLDER`}
-              height={220}
+              height={200}
             />
           </motion.div>
         </AnimatePresence>

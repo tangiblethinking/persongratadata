@@ -156,7 +156,7 @@ export default function ProblemSection() {
             src="https://www.brother.co.uk/-/media/images/brother-uk/blog/header-images/the-rise-of-office-robotics-2x.jpg?rev=8af4caff0a074738a5ef618888960b3c&mw=1170&hash=AA45DB6BB3951934B48FBB17C39D4F97"
             alt="Problem overview"
             title="The Problem"
-            height={280}
+            height={200}
           />
         </motion.div>
 
