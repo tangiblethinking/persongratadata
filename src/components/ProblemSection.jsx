@@ -153,7 +153,7 @@ export default function ProblemSection() {
           style={{ marginBottom: 40 }}
         >
           <ImageSlot
-            src="https://www.brother.co.uk/-/media/images/brother-uk/blog/header-images/the-rise-of-office-robotics-2x.jpg?rev=8af4caff0a074738a5ef618888960b3c&mw=1170&hash=AA45DB6BB3951934B48FBB17C39D4F97"
+            src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/e42afd9f-0ddb-4a20-8a98-8709ebf8b9ec.png?h=016fc2170fe4080d3074ab2c4be11ab5"
             alt="Problem overview"
             title="The Problem"
             height={200}
