@@ -164,7 +164,7 @@ export default function ToolSection() {
 
             {/* Image slot */}
             <ImageSlot
-              src=""
+              src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/ec7c0862-d91f-4139-a4cc-542e77309d88.png?h=057b865b17139842d4cc0991d617d1be"
               title={`${mode.mode} Mode — The Tool`}
               label={`${mode.mode.toUpperCase()} MODE — TOOL SCREENSHOT PLACEHOLDER`}
               height={200}
