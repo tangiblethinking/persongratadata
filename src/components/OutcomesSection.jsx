@@ -139,44 +139,51 @@ function BeforeAfterSlider({ outcome }) {
         </div>
       </div>
 
-      {/* ── Pills — outside clipped panels so they never get cut ── */}
-      {/* BEFORE pill: top-left, always shown */}
-      <span style={{
-        position: 'absolute',
-        top: 12,
-        left: 14,
-        zIndex: 5,
-        fontSize: '0.62rem',
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        letterSpacing: '0.12em',
-        color: '#cf6679',
-        background: 'rgba(207,102,121,0.18)',
-        border: '1px solid rgba(207,102,121,0.35)',
-        padding: '3px 10px',
-        borderRadius: 100,
-        whiteSpace: 'nowrap',
-        pointerEvents: 'none',
-      }}>BEFORE</span>
+      {/* ── Pills — outside clipped panels so they never get cut ──
+           Shown/hidden based on how much of each panel is visible.
+           BEFORE shows when handle is past 20% (before panel has room)
+           AFTER  shows when handle is below 80% (after panel has room)  */}
+      {pos > 20 && (
+        <span style={{
+          position: 'absolute',
+          top: 12,
+          left: 14,
+          zIndex: 5,
+          fontSize: '0.62rem',
+          fontFamily: 'var(--font-display)',
+          fontWeight: 700,
+          letterSpacing: '0.12em',
+          color: '#cf6679',
+          background: 'rgba(207,102,121,0.18)',
+          border: '1px solid rgba(207,102,121,0.35)',
+          padding: '3px 10px',
+          borderRadius: 100,
+          whiteSpace: 'nowrap',
+          pointerEvents: 'none',
+          transition: 'opacity 0.2s ease',
+        }}>BEFORE</span>
+      )}
 
-      {/* AFTER pill: top-right, always shown */}
-      <span style={{
-        position: 'absolute',
-        top: 12,
-        right: 14,
-        zIndex: 5,
-        fontSize: '0.62rem',
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        letterSpacing: '0.12em',
-        color: '#4caf89',
-        background: 'rgba(76,175,137,0.18)',
-        border: '1px solid rgba(76,175,137,0.35)',
-        padding: '3px 10px',
-        borderRadius: 100,
-        whiteSpace: 'nowrap',
-        pointerEvents: 'none',
-      }}>AFTER</span>
+      {pos < 80 && (
+        <span style={{
+          position: 'absolute',
+          top: 12,
+          right: 14,
+          zIndex: 5,
+          fontSize: '0.62rem',
+          fontFamily: 'var(--font-display)',
+          fontWeight: 700,
+          letterSpacing: '0.12em',
+          color: '#4caf89',
+          background: 'rgba(76,175,137,0.18)',
+          border: '1px solid rgba(76,175,137,0.35)',
+          padding: '3px 10px',
+          borderRadius: 100,
+          whiteSpace: 'nowrap',
+          pointerEvents: 'none',
+          transition: 'opacity 0.2s ease',
+        }}>AFTER</span>
+      )}
 
       {/* ── Divider + handle ── */}
       <div style={{
