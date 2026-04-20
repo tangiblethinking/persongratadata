@@ -263,7 +263,7 @@ export default function PersonaTiersSection() {
         {/* Image slot */}
         <div style={{ marginTop: 40 }}>
           <ImageSlot
-            src=""
+            src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/db479b5a-2c39-480d-aae4-8f667b13de3e.png?h=8b1764ec6d6055a36f98cf67d73413eb"
             title="Persona Output"
             label="PERSONA OUTPUT SCREENSHOT — ADD URL"
             height={200}
