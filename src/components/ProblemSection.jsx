@@ -34,7 +34,7 @@ function ProblemCard({ item, index }) {
       }}
       onMouseEnter={e => {
         if (!expanded) {
-          e.currentTarget.style.borderColor = 'rgba(67,143,156,0.3)';
+          e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
           e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
         }
       }}

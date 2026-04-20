@@ -62,7 +62,7 @@ export default function NextStepsSection() {
                 transition: 'all 0.35s cubic-bezier(0.4,0,0.2,1)',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.borderColor = `${step.color}50`;
+                e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                 e.currentTarget.style.background = `${step.color}08`;
                 e.currentTarget.style.transform = 'translateY(-6px)';
                 e.currentTarget.style.boxShadow = `0 20px 48px rgba(0,0,0,0.35)`;

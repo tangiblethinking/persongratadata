@@ -227,7 +227,7 @@ export default function PersonaTiersSection() {
                 }}
                 onMouseEnter={e => {
                   e.currentTarget.style.background = `${tier.color}10`;
-                  e.currentTarget.style.borderColor = `${tier.color}40`;
+                  e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                   e.currentTarget.style.transform = 'translateX(6px)';
                 }}
                 onMouseLeave={e => {

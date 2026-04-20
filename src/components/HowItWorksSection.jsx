@@ -123,7 +123,7 @@ export default function HowItWorksSection() {
                       }}
                       onMouseEnter={e => {
                         e.currentTarget.style.background = 'rgba(67,143,156,0.08)';
-                        e.currentTarget.style.borderColor = 'rgba(67,143,156,0.3)';
+                        e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                         e.currentTarget.style.transform = 'translateX(6px)';
                       }}
                       onMouseLeave={e => {

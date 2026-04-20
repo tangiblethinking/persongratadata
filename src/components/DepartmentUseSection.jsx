@@ -48,7 +48,7 @@ export default function DepartmentUseSection() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.background = `${dept.color}0d`;
-                e.currentTarget.style.borderColor = `${dept.color}40`;
+                e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
                 e.currentTarget.style.boxShadow = `0 12px 32px rgba(0,0,0,0.3)`;
               }}

@@ -29,7 +29,7 @@ function AnimatedStat({ value, label, icon, delay }) {
         flex: '1 1 140px',
       }}
       onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'rgba(67,143,156,0.4)';
+        e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
         e.currentTarget.style.background = 'rgba(67,143,156,0.06)';
       }}
       onMouseLeave={e => {
