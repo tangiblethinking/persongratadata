@@ -105,7 +105,7 @@ export default function DepartmentUseSection() {
         {/* Image slot */}
         <div style={{ marginTop: 40 }}>
           <ImageSlot
-            src=""
+            src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/c9a2f4fa-3cc9-4df4-ba94-6c8344600165.png?h=108d938868b6890ab696a8021a5a0676"
             title="Holistic Department Use"
             label="DEPARTMENT DASHBOARD — ADD URL"
             height={200}
