@@ -119,7 +119,7 @@ export const PERSONA_TIERS = [
       Product: 'Simplified onboarding, social proof integration, low-risk CTAs',
       UX: 'Reduce cognitive load, clarify value, streamline first-touch flows',
     },
-    imageUrl: '',
+    imageUrl: '', // ← Unaware tier side sheet image URL
   },
   {
     id: 'vip',
@@ -136,7 +136,7 @@ export const PERSONA_TIERS = [
       Product: 'Feature reminders, loyalty program visibility, frictionless re-entry',
       UX: 'Reduce re-onboarding friction, surface missed value, proactive outreach triggers',
     },
-    imageUrl: '',
+    imageUrl: '', // ← VIP tier side sheet image URL
   },
   {
     id: 'ambassador',
@@ -153,11 +153,9 @@ export const PERSONA_TIERS = [
       Product: 'Advanced features, business tools, priority support pathways',
       UX: 'Power-user flows, business dashboard access, reduced friction at every touchpoint',
     },
-    imageUrl: '',
+    imageUrl: '', // ← Ambassador tier side sheet image URL
   },
-];
-
-export const DEPARTMENTS = [
+]; = [
   {
     icon: 'science',
     name: 'Research & Analysis',

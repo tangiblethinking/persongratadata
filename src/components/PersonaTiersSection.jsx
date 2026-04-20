@@ -263,7 +263,7 @@ export default function PersonaTiersSection() {
         {/* Image slot */}
         <div style={{ marginTop: 40 }}>
           <ImageSlot
-            src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/db479b5a-2c39-480d-aae4-8f667b13de3e.png?h=8b1764ec6d6055a36f98cf67d73413eb"
+            src=""
             title="Persona Output"
             label="PERSONA OUTPUT SCREENSHOT — ADD URL"
             height={200}
@@ -341,7 +341,7 @@ export default function PersonaTiersSection() {
             {/* Image slot */}
             <div style={{ marginTop: 24 }}>
               <ImageSlot
-                src="https://cdn.myportfolio.com/abc1e0ab-7370-4502-8c78-92428397bf66/0d67466a-b4fd-4b1c-b565-23ceb4baea1d.png?h=886d917df6e34a9d56d455660096387c"
+                src={selectedTier.imageUrl || ''}
                 title={selectedTier.tier}
                 label={`${selectedTier.tier.toUpperCase()} PERSONA CARD — ADD URL`}
                 height={160}
