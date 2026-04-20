@@ -123,7 +123,7 @@ export default function ValidationSection() {
                       alignItems: 'center',
                       gap: 16,
                       padding: '20px 24px',
-                      background: openNode === node.id ? `${node.color}12` : 'rgba(255,255,255,0.03)',
+                      background: openNode === node.id ? 'var(--c-glass)' : 'rgba(255,255,255,0.03)',
                       border: `1px solid ${openNode === node.id ? node.color + '45' : 'rgba(120,172,175,0.12)'}`,
                       borderRadius: openNode === node.id ? '14px 14px 0 0' : 14,
                       cursor: 'pointer',
@@ -133,10 +133,10 @@ export default function ValidationSection() {
                   >
                     <div style={{
                       width: 48, height: 48, borderRadius: 14,
-                      background: `${node.color}20`,
+                      background: 'var(--c-glass)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
-                      border: `1px solid ${node.color}35`,
+                      border: '1px solid var(--c-glass-border)',
                     }}>
                       <span className="material-icons-round" style={{ color: node.color, fontSize: 24 }}>{node.icon}</span>
                     </div>
@@ -153,7 +153,7 @@ export default function ValidationSection() {
                           textTransform: 'uppercase',
                           color: node.color,
                           padding: '2px 8px',
-                          background: `${node.color}20`,
+                          background: 'var(--c-glass)',
                           borderRadius: 4,
                         }}>Stage {i + 1}</div>
                         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.05rem', color: 'var(--c-white)' }}>{node.label}</div>
@@ -182,8 +182,8 @@ export default function ValidationSection() {
                       >
                         <div style={{
                           padding: '24px 24px 24px',
-                          background: `${node.color}08`,
-                          border: `1px solid ${node.color}35`,
+                          background: 'rgba(255,255,255,0.03)',
+                          border: '1px solid var(--c-glass-border)',
                           borderTop: 'none',
                           borderRadius: '0 0 14px 14px',
                         }}>

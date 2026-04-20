@@ -59,7 +59,7 @@ export default function OrgAdoptionSection() {
                       gap: 16,
                       padding: '22px 28px',
                       background: isExpanded
-                        ? `linear-gradient(135deg, ${layer.color}18, ${layer.color}0a)`
+                        ? 'linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))'
                         : `linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02))`,
                       border: `1px solid ${isExpanded ? layer.color + '50' : 'rgba(120,172,175,0.12)'}`,
                       borderRadius: isExpanded ? '16px 16px 0 0' : 16,
@@ -72,8 +72,8 @@ export default function OrgAdoptionSection() {
                     <div style={{
                       width: 32, height: 32,
                       borderRadius: '50%',
-                      background: `${layer.color}25`,
-                      border: `1px solid ${layer.color}45`,
+                      background: 'rgba(255,255,255,0.15)',
+                      border: '1px solid rgba(255,255,255,0.2)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontFamily: 'var(--font-display)',
                       fontWeight: 800,
@@ -84,7 +84,7 @@ export default function OrgAdoptionSection() {
 
                     <div style={{
                       width: 44, height: 44, borderRadius: 12,
-                      background: `${layer.color}15`,
+                      background: 'var(--c-glass)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       flexShrink: 0,
                     }}>
@@ -146,8 +146,8 @@ export default function OrgAdoptionSection() {
                       >
                         <div style={{
                           padding: '24px 28px',
-                          background: `${layer.color}06`,
-                          border: `1px solid ${layer.color}35`,
+                          background: 'rgba(255,255,255,0.03)',
+                          border: '1px solid var(--c-glass-border)',
                           borderTop: 'none',
                           borderRadius: '0 0 16px 16px',
                         }}>
@@ -205,7 +205,7 @@ export default function OrgAdoptionSection() {
                   }}>
                     <div style={{
                       width: 2, height: 20,
-                      background: `linear-gradient(180deg, ${ORG_LAYERS[i].color}60, ${ORG_LAYERS[i+1].color}60)`,
+                      background: 'linear-gradient(180deg, rgba(79,119,147,0.6), rgba(54,92,111,0.6))',
                     }} />
                   </div>
                 )}
@@ -238,8 +238,8 @@ export default function OrgAdoptionSection() {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 14,
               padding: '16px 20px',
-              background: `${selectedLayer.color}10`,
-              border: `1px solid ${selectedLayer.color}25`,
+              background: 'var(--c-glass)',
+              border: '1px solid var(--c-glass-border)',
               borderRadius: 12, marginBottom: 28,
             }}>
               <span className="material-icons-round" style={{ color: selectedLayer.color, fontSize: 28 }}>{selectedLayer.icon}</span>
@@ -285,7 +285,7 @@ export default function OrgAdoptionSection() {
               <p style={{
                 fontSize: '0.9rem', color: 'var(--c-text-secondary)', lineHeight: 1.75,
                 padding: '18px', background: 'rgba(255,255,255,0.03)',
-                borderRadius: 12, border: `1px solid ${selectedLayer.color}20`,
+                borderRadius: 12, border: '1px solid var(--c-glass-border)',
               }}>
                 {selectedLayer.toolNarrative}
               </p>

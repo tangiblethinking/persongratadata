@@ -20,7 +20,7 @@ function ConstellationOrbit({ tier, index, onSelect, isSelected, containerSize }
         cy={cy}
         r={r}
         fill="none"
-        stroke={`${tier.color}22`}
+        stroke='rgba(120,172,175,0.13)'
         strokeWidth={1}
         strokeDasharray="4 8"
       />
@@ -219,20 +219,20 @@ export default function PersonaTiersSection() {
                 onClick={() => handleSelect(tier)}
                 style={{
                   padding: '20px 22px',
-                  background: selectedTier?.id === tier.id ? `${tier.color}12` : 'rgba(255,255,255,0.03)',
+                  background: selectedTier?.id === tier.id ? 'var(--c-glass)' : 'rgba(255,255,255,0.03)',
                   border: `1px solid ${selectedTier?.id === tier.id ? tier.color + '55' : 'rgba(120,172,175,0.12)'}`,
                   borderRadius: 14,
                   cursor: 'pointer',
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={e => {
-                  e.currentTarget.style.background = `${tier.color}10`;
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
                   e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                   e.currentTarget.style.transform = 'translateX(6px)';
                 }}
                 onMouseLeave={e => {
-                  e.currentTarget.style.background = selectedTier?.id === tier.id ? `${tier.color}12` : 'rgba(255,255,255,0.03)';
-                  e.currentTarget.style.borderColor = selectedTier?.id === tier.id ? `${tier.color}55` : 'rgba(120,172,175,0.12)';
+                  e.currentTarget.style.background = selectedTier?.id === tier.id ? 'var(--c-glass)' : 'rgba(255,255,255,0.03)';
+                  e.currentTarget.style.borderColor = selectedTier?.id === tier.id ? 'var(--c-glass-border)' : 'rgba(120,172,175,0.12)';
                   e.currentTarget.style.transform = 'translateX(0)';
                 }}
               >
@@ -246,8 +246,8 @@ export default function PersonaTiersSection() {
                     <span key={t} style={{
                       fontSize: '0.72rem',
                       padding: '3px 10px',
-                      background: `${tier.color}18`,
-                      border: `1px solid ${tier.color}30`,
+                      background: 'var(--c-glass)',
+                      border: '1px solid var(--c-glass-border)',
                       borderRadius: 100,
                       color: tier.color,
                       fontFamily: 'var(--font-display)',
@@ -285,8 +285,8 @@ export default function PersonaTiersSection() {
             <div style={{
               display: 'flex', alignItems: 'center', gap: 12,
               padding: '16px 20px',
-              background: `${selectedTier.color}12`,
-              border: `1px solid ${selectedTier.color}30`,
+              background: 'var(--c-glass)',
+              border: '1px solid var(--c-glass-border)',
               borderRadius: 12, marginBottom: 28,
             }}>
               <span className="material-icons-round" style={{ color: selectedTier.color, fontSize: 28 }}>{selectedTier.icon}</span>
@@ -309,8 +309,8 @@ export default function PersonaTiersSection() {
                 {selectedTier.traits.map(t => (
                   <span key={t} style={{
                     padding: '6px 14px',
-                    background: `${selectedTier.color}15`,
-                    border: `1px solid ${selectedTier.color}30`,
+                    background: 'var(--c-glass)',
+                    border: '1px solid var(--c-glass-border)',
                     borderRadius: 100,
                     fontSize: '0.8rem',
                     color: selectedTier.color,

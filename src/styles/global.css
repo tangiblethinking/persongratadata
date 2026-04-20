@@ -3,10 +3,15 @@
 :root {
   --c-sky: #71C3FD;
   --c-teal: #4F7793;
+  --c-teal-light: #78ACAF;
+  --c-teal-mid: #438F9C;
+  --c-teal-deep: #365C6F;
   --c-navy: #0B4A7F;
   --c-deep: #0F2B4E;
   --c-rust: #FF7F00;
+  --c-rust-deep: #C98666;
   --c-amber: #FFCE85;
+  --c-amber-deep: #A56935;
   --c-white: #F8F4F4;
   --c-glass: rgba(255,255,255,0.15);
   --c-glass-border: rgba(100,146,149,0.18);

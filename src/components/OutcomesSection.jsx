@@ -266,8 +266,8 @@ export default function OutcomesSection() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
                 <div style={{
                   width: 52, height: 52, borderRadius: 14,
-                  background: `${outcome.color}18`,
-                  border: `1px solid ${outcome.color}30`,
+                  background: 'var(--c-glass)',
+                  border: '1px solid var(--c-glass-border)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                 }}>

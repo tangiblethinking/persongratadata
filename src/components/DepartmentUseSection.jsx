@@ -47,7 +47,7 @@ export default function DepartmentUseSection() {
                 transition: 'all 0.3s ease',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = `${dept.color}0d`;
+                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
                 e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
                 e.currentTarget.style.transform = 'translateY(-4px)';
                 e.currentTarget.style.boxShadow = `0 12px 32px rgba(0,0,0,0.3)`;
@@ -62,7 +62,7 @@ export default function DepartmentUseSection() {
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
                 <div style={{
                   width: 44, height: 44, borderRadius: 12,
-                  background: `${dept.color}18`,
+                  background: 'var(--c-glass)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0,
                 }}>
@@ -124,8 +124,8 @@ export default function DepartmentUseSection() {
           <div>
             <div style={{
               display: 'flex', alignItems: 'center', gap: 12,
-              padding: '16px', background: `${selected.color}10`,
-              border: `1px solid ${selected.color}25`, borderRadius: 12, marginBottom: 24,
+              padding: '16px', background: 'var(--c-glass)',
+              border: '1px solid var(--c-glass-border)', borderRadius: 12, marginBottom: 24,
             }}>
               <span className="material-icons-round" style={{ color: selected.color, fontSize: 26 }}>{selected.icon}</span>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '0.85rem', color: selected.color }}>

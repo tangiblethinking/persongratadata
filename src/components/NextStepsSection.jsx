@@ -63,7 +63,7 @@ export default function NextStepsSection() {
               }}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = 'rgba(248,244,244,0.75)';
-                e.currentTarget.style.background = `${step.color}08`;
+                e.currentTarget.style.background = 'rgba(255,255,255,0.05)';
                 e.currentTarget.style.transform = 'translateY(-6px)';
                 e.currentTarget.style.boxShadow = `0 20px 48px rgba(0,0,0,0.35)`;
               }}
@@ -80,7 +80,7 @@ export default function NextStepsSection() {
                 fontFamily: 'var(--font-display)',
                 fontWeight: 800,
                 fontSize: '3.5rem',
-                color: `${step.color}12`,
+                color: 'var(--c-glass)',
                 lineHeight: 1,
                 userSelect: 'none',
               }}>{String(i + 1).padStart(2, '0')}</div>
@@ -88,8 +88,8 @@ export default function NextStepsSection() {
               {/* Icon */}
               <div style={{
                 width: 48, height: 48, borderRadius: 14,
-                background: `${step.color}18`,
-                border: `1px solid ${step.color}30`,
+                background: 'var(--c-glass)',
+                border: '1px solid var(--c-glass-border)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 marginBottom: 20,
               }}>
