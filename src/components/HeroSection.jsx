@@ -111,7 +111,7 @@ export default function HeroSection() {
           </div>
           <div className="chip chip-amber">
             <span className="material-icons-round" style={{ fontSize: 14 }}>workspace_premium</span>
-            Sr. Director of UX Design
+            Principal of UX Design
           </div>
         </motion.div>
 

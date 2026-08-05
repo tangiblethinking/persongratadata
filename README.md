@@ -1,6 +1,6 @@
 # The Persona Project — Portfolio Case Study
 
-**Christopher Kenreigh · Sr. Director of UX Design**
+**Christopher Kenreigh · Principal of UX Design**
 
 A production-grade, interactive portfolio case study documenting the design and deployment of a centralized, generative persona system at Plexus Worldwide.
 

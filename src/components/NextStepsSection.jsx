@@ -163,7 +163,7 @@ export default function NextStepsSection() {
             </div>
             <div style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--c-text-muted)' }} />
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 500, fontSize: '0.82rem', color: 'var(--c-text-muted)' }}>
-              Sr. Director of UX Design
+              Principal of UX Design
             </div>
           </div>
         </motion.div>
